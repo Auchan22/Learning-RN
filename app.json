@@ -8,6 +8,9 @@
       "expo-router"
     ],
     "name": "rn-jobs",
-    "slug": "rn-jobs"
+    "slug": "rn-jobs",
+    "experiments": {
+      "typedRoutes": true
+    }
   }
 }
