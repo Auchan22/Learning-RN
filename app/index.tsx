@@ -1,53 +1,36 @@
 import {
-  Nearbyjobs,
-  Popularjobs,
-  ScreenHeaderBtn,
-  Welcome,
-} from "@/components";
-import Header from "@/components/common/header/Header";
-import { COLORS, SIZES, icons, images } from "@/constants";
-import { useFonts } from "expo-font";
-import { Stack, useRouter } from "expo-router";
-import { useCallback } from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
-import * as SplashScreen from "expo-splash-screen";
-
-SplashScreen.preventAutoHideAsync();
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function Page() {
-  const router = useRouter();
-  const [fontsLoaded] = useFonts({
-    DMBold: require("@/assets/fonts/DMSans-Bold.ttf"),
-    DMMedium: require("@/assets/fonts/DMSans-Medium.ttf"),
-    DMRegular: require("@/assets/fonts/DMSans-Regular.ttf"),
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) return null;
-
   return (
-    <SafeAreaView
-      onLayout={onLayoutRootView}
-      style={{ flex: 1, backgroundColor: COLORS.lightWhite }}
-    >
-      <Header />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View
-          style={{
-            flex: 1,
-            padding: SIZES.medium,
-          }}
-        >
-          <Welcome />
-          <Popularjobs />
-          <Nearbyjobs />
+    <View style={styles.container}>
+      <Text>Hola Mundo</Text>
+      <TouchableOpacity onPress={() => console.log("Ay! Me apretaste")}>
+        <View style={styles.button}>
+          <Text>Clickeame</Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </TouchableOpacity>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#e3e3e3",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    borderRadius: 10,
+    padding: 10,
+    shadowColor: "red",
+    shadowOffset: { height: 10, width: 5 },
+    backgroundColor: "#e4f4f5",
+  },
+});
